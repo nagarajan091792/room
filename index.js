@@ -3,6 +3,10 @@ const bodyParser=require("body-parser");
 var fs= require("fs");
 const app=express();
 //room details
+const users = [
+
+    {"1":{"id":1,"name":"rafi","email":"rafi@gmail.com","phone":"9854562343","adult":"2","child":"0","checkin":"07/12/2022","checkout":"16/12/2022"},"2":{"id":2,"name":"rafi","email":"rafi@gmail.com","phone":"9854562343","adult":"2","child":"0","checkin":"07/12/2022","checkout":"16/12/2022"},"3":{"id":"3","name":"NAGARAJAN MH","email":"nagarajan091792@gmail.com","phone":"9629828085","adult":"1","child":"1","checkin":"2022-12-09","checkout":"2022-12-09","A":"on","d":""}}
+]
 const datas=[{
     HOTEL_NAME:"YSR",
     owner_name:"Rafiya",
@@ -23,7 +27,7 @@ app.get("/roomdetails",(req,res)=>{
 })
 //room booking
 app.post("/addUser",function(req,res){
-    
+
     var id=req.body.id
     var name=req.body.name
     var email=req.body.email
@@ -77,7 +81,7 @@ app.post("/addUser",function(req,res){
     obj[key]=newuser;
 
 //user details json and updateing logic
-    fs.readFile("users.json","utf8",function(err,data){
+    fs.readFile("users","utf8",function(err,data){
         data=JSON.parse(data);
         data[key]=obj[key];
         console.log(data)
