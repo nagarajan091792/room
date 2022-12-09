@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<style>
+body {
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: rgb(111, 110, 110);
+  }
+  
+  div.elem-group {
+    margin: 20px 0;
+  }
+  
+  div.elem-group.inlined {
+    width: 49%;
+    display: inline-block;
+    margin-left: 1%;
+  }
+  
+  label {
+    display: block;
+    font-family: 'Nanum Gothic';
+    padding-bottom: 10px;
+    font-size: 1.25em;
+  }
+  
+  input, select, textarea {
+    border-radius: 2px;
+    border: 2px solid #777;
+    box-sizing: border-box;
+    font-size: 1.25em;
+    font-family: 'Nanum Gothic';
+    width: 100%;
+    padding: 10px;
+  }
+  
+  div.elem-group.inlined input {
+    width: 95%;
+    display: inline-block;
+  }
+  
+  textarea {
+    height: 250px;
+  }
+  
+  hr {
+    border: 1px dotted rgb(35, 1, 1);
+  }
+  
+  button {
+    height: 50px;
+    background: orange;
+    border: none;
+    color: white;
+    font-size: 1.25em;
+    font-family: 'Nanum Gothic';
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    border: 2px solid black;
+  }
+  
+  /* seat booking*/  
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+
+  }
+  span{
+    color: red;
+  }
+  .heading{
+    background-color: cadetblue;
+    text-shadow: #2f2f2f;
+    text-align: center;
+    margin-bottom: 10px;
+    
+  }
+  .plane {
+    margin: 20px auto;
+    max-width: 300px;
+  }
+ 
+  .cockpit {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 5px solid #d8d8d8;
+  }
+  .cockpit:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 500px;
+    width: 100%;
+    border-radius: 50%;
+    border-right: 5px solid #d8d8d8;
+    border-left: 5px solid #d8d8d8;
+  }
+  .cockpit h1 {
+    width: 60%;
+    margin: 100px auto 35px auto;
+  }
+  
+  .exit {
+    position: relative;
+    height: 50px;
+  }
+  .exit:before, .exit:after {
+    content: "EXIT";
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0px 2px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    display: block;
+    position: absolute;
+    background: green;
+    color: white;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .exit:before {
+    left: 0;
+  }
+  .exit:after {
+    right: 0;
+  }
+  
+  .fuselage {
+    border-right: 5px solid #d8d8d8;
+    border-left: 5px solid #d8d8d8;
+  }
+  
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .seats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  
+  .seat {
+    display: flex;
+    flex: 0 0 14.2857142857%;
+    padding: 5px;
+    position: relative;
+  }
+  .seat:nth-child(3) {
+    margin-right: 14.2857142857%;
+  }
+  .seat input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+  }
+  .seat input[type=checkbox]:checked + label {
+    background: #bada55;
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+  }
+  .seat input[type=checkbox]:disabled + label {
+    background: #dddddd;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+  .seat input[type=checkbox]:disabled + label:after {
+    content: "X";
+    text-indent: 0;
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  .seat input[type=checkbox]:disabled + label:hover {
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  .seat label {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 4px 0;
+    background: #F42536;
+    border-radius: 5px;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+  }
+  .seat label:before {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    top: 1px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+  }
+  .seat label:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0px 2px #5C6AFF;
+  }
+  
+  @-webkit-keyframes rubberBand {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  @keyframes rubberBand {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  .rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+  }
+</style>
+<div class="heading">
+    <h1><span>YSR</span> Hall booking</h1>
+    </div>
+
+    <form action="/roomdetails" method="get">
+        <h2 style="background-color: aqua;">Hotel details</h2>
+        <button type="submit">About Us</button>
+
+
+      </form>
+    <form action= "/specficuser" method="post">
+        <h3 style="background-color: aqua;">Get specfic details</h3>
+    <div class="elem-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" placeholder="id"  required>
+      </div>
+      <button type="submit">View the user</button>
+
+      </form>
+      <hr><hr>
+      <form action= "/deletuser" method="post">
+        <h3 style="background-color: aqua;">Delete the User</h3>
+    <div class="elem-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" placeholder="id"  required>
+      </div>
+      <button type="submit">Delete</button>
+
+      </form>
+
+
+      <hr><hr>
+    <form action="/addUser" method="post">
+        <h2 style="background-color: aqua;">Book Hall</h2>
+        <div>
+            <label for="id">ID</label>
+            <input type="number" id="id" name="id" placeholder="id"  required>
+        </div>
+        <div class="elem-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" pattern=[A-Z\sa-z]{3,20} required>
+        </div>
+        <div class="elem-group">
+          <label for="email">Your E-mail</label>
+          <input type="email" id="email" name="email" placeholder="john.doe@email.com" required>
+        </div>
+        <div class="elem-group">
+          <label for="phone">Your Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="498-348-3872" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+        </div>
+        <hr>
+        <div class="elem-group inlined">
+          <label for="adult">Adults</label>
+          <input type="number" id="adult" name="adult" placeholder="2" min="1" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="child">Children</label>
+          <input type="number" id="child" name="child" placeholder="2" min="0" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkin">Check-in Date</label>
+          <input type="date" id="checkin" name="checkin" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkout">Check-out Date</label>
+          <input type="date" id="checkout" name="checkout" required>
+        </div>
+    
+        <hr>
+        <hr>
+        <h1>Select  Rooms</h1>
+
+        <div class="exit exit--front fuselage">
+          
+        </div>
+
+       
+
+            <ol class="seats" type="A">
+              <li class="seat">
+                <input type="checkbox" id="A"  name="A"/>
+                <label for="A">1A</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"  name ="B"id="B" />
+                <label for="B">1B</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox" name="C" id="C" />
+                <label for="C">1C</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox" name="D" disabled id="D" />
+                <label for="D">Occupied</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"name="E" id="E" />
+                <label for="E">1E</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"name="F" id="F" />
+                <label for="F">1F</label>
+              </li>
+            </ol>
+          </li>
+          <li class="row row--2">
+            <ol class="seats" type="a">
+              <li class="seat">
+                <input type="checkbox" name="a" id="a" />
+                <label for="a">a</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"  name="b"id="b" />
+                <label for="b">b</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"  name="c"id="c" />
+                <label for="c">c</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox9"  name="d"id="d" />
+                <label for="d">d</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox" name="e" id="e" />
+                <label for="e">e</label>
+              </li>
+              <li class="seat">
+                <input type="checkbox"name="f" id="f" />
+                <label for="f">f</label>
+              </li>
+            </ol>
+          
+              
+              
+            </ol>
+          </li>
+          
+        <button type="submit">Book The Rooms</button>
+      </form>
+    
+
+
+   
+       
+</body>
+</html>
+    
