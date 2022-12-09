@@ -86,7 +86,7 @@ app.post("/addUser",function(req,res){
         data[key]=obj[key];
         console.log(data)
         var upsateuser=JSON.stringify(data);
-        fs.writeFile("users.json",upsateuser,function(err){
+        fs.writeFile("users",upsateuser,function(err){
             res.end(JSON.stringify(data));
         })
     })
